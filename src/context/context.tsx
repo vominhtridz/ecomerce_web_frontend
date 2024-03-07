@@ -1,37 +1,51 @@
 import {
   FC,
-  ReactElement,
   createContext,
   useContext,
   useEffect,
+  useLayoutEffect,
   useState,
 } from "react"
-import { ContainLanguages } from "../languages/Languages"
+import { ContainLanguages, defaultLanguage } from "../languages/Languages"
 import { useLocation } from "react-router-dom"
-interface myproviderType {
-  children: ReactElement
+import { myproviderType } from "../typescript/contextType"
+import { languageType } from "../typescript/languageType"
+const mycontext = createContext<languageType | null>(null)
+interface defaultLanguageType extends languageType {
+  setLanguage: () => void
 }
-const mycontext = createContext<object | null>({})
 
 const MyProvider: FC<myproviderType> = ({ children }) => {
-  const [language, setLanguage] = useState<object>({})
   const location = useLocation()
-  useEffect(() => {
-    // select path browser and loop over array containlanguages to get Shortcode then assign to state language
-
-    let path = location.pathname.slice(1)
+  let path = location.pathname.slice(1)
+  ///SET DEFAULT LANGUAGE
+  function SetDefaultLanguage() {
     for (let objLang of ContainLanguages) {
       for (let shortCode in objLang) {
-        if (path === "") {
-          // select default language is vietnam
-          setLanguage(objLang.defaultLang)
-        } else if (shortCode === path) {
+        if (shortCode === path) {
+          return objLang[shortCode]
+        }
+      }
+    }
+  }
+  const [language, setLanguage] = useState<defaultLanguageType | any>(
+    SetDefaultLanguage() || defaultLanguage,
+  )
+
+  useEffect(() => {
+    // take path browser and loop over array ContainLanguages to take into shortKey language
+    // finnally assign language into state language if path browser = shortKey
+    for (let objLang of ContainLanguages) {
+      for (let shortCode in objLang) {
+        if (shortCode === path) {
           setLanguage(objLang[shortCode])
         }
       }
     }
   }, [language])
-  console.log(language)
+  useLayoutEffect(() => {
+    console.log("hello")
+  }, [])
   return (
     <mycontext.Provider value={{ language, setLanguage }}>
       {children}

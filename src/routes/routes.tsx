@@ -5,7 +5,12 @@ interface PublicRoutes {
   component: ReactElement
   path: string
 }
+const path = window.location.pathname
 const PublicRoutes: PublicRoutes[] = [
+  {
+    component: <Home />,
+    path: `${path}`,
+  },
   {
     component: <Home />,
     path: `/`,
@@ -15,6 +20,7 @@ const PublicRoutes: PublicRoutes[] = [
     path: "*",
   },
 ]
+
 const PrivateRoutes = [{}]
 
 export { PublicRoutes, PrivateRoutes }

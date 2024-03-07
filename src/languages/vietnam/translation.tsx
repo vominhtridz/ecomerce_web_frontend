@@ -1,14 +1,38 @@
 const VietNam = {
   header: {
     navbar: [
-      "Trang chủ",
-      "Sản phẩm",
-      "Sứ mệnh của chúng tôi",
-      "Nhóm của chúng tôi",
-      "Cửa hàng nhóm",
-      "Cửa hàng",
-      "Trở thành thành viên",
-      "Đăng nhập",
+      {
+        title: "Trang chủ",
+        route: "/vi",
+      },
+      {
+        title: "Sản phẩm",
+        route: "/vi/products",
+      },
+      {
+        title: "Sứ mệnh của chúng tôi",
+        route: "/vi/OurMission",
+      },
+      {
+        title: "Nhóm của chúng tôi",
+        route: "/vi/groupOfUs",
+      },
+      {
+        title: "Cửa hàng nhóm",
+        route: "/vi/groupStore",
+      },
+      {
+        title: "Cửa hàng",
+        route: "/vi/Shop",
+      },
+      {
+        title: "Trở thành thành viên",
+        route: "/vi/BecomeMember",
+      },
+      {
+        title: "Đăng nhập",
+        route: "/vi/Login",
+      },
     ],
   },
 }

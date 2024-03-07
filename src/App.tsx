@@ -10,7 +10,7 @@ const App: FC = () => {
       <MyProvider>
         <DefaultLayout>
           <Routes>
-            {PublicRoutes.map((route, index) => (
+            {PublicRoutes.map((route: PublicRoutes, index: number) => (
               <Route key={index} path={route.path} element={route.component} />
             ))}
           </Routes>

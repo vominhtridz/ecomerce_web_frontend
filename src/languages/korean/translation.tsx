@@ -1,14 +1,38 @@
 const Korean = {
   header: {
     navbar: [
-      "집",
-      "제품",
-      "우리의 임무",
-      "우리 팀",
-      "팀 상점",
-      "상점",
-      "회원 가입",
-      "로그인",
+      {
+        title: "집",
+        route: "/ko",
+      },
+      {
+        title: "제품",
+        route: "/ko/products",
+      },
+      {
+        title: "우리의 미션",
+        route: "/ko/OurMission",
+      },
+      {
+        title: "우리 팀",
+        route: "/ko/groupOfUs",
+      },
+      {
+        title: "그룹 매장",
+        route: "/ko/groupStore",
+      },
+      {
+        title: "가게",
+        route: "/ko/Shop",
+      },
+      {
+        title: "멤버가되다",
+        route: "/ko/BecomeMember",
+      },
+      {
+        title: "로그인",
+        route: "/ko/Login",
+      },
     ],
   },
 }

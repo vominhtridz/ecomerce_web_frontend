@@ -11,8 +11,7 @@ const ContainLanguages: Language[] = [
     en: english,
     vi: VietNam,
     ko: Korean,
-    defaultLang: VietNam,
   },
 ]
-
-export { ContainLanguages }
+const defaultLanguage = VietNam
+export { ContainLanguages, defaultLanguage }
