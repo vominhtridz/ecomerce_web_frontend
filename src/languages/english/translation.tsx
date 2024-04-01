@@ -13,7 +13,7 @@ const english = {
       },
       {
         title: "Our Mission",
-        route: "/en/OurMission",
+        route: "/en/ourMission",
       },
       {
         title: "Our Team",
@@ -25,15 +25,11 @@ const english = {
       },
       {
         title: "Shop",
-        route: "/en/Shop",
+        route: "/en/shop",
       },
       {
         title: "Become a member",
-        route: "/en/BecomeMember",
-      },
-      {
-        title: "Login",
-        route: "/en/Login",
+        route: "/en/becomeMember",
       },
     ],
   },
@@ -43,11 +39,33 @@ const english = {
     homeFeatures: HomeFeaturesEN,
     products: {
       totalProducts: "Products",
-      view: ["view 24 items", "view 48 items", "view 76 items"],
+      views: [
+        {
+          title: "view 24 items",
+          route: "/en/",
+        },
+        {
+          title: "view 48 items",
+          route: "/en/",
+        },
+        {
+          title: "view 76 items",
+          route: "/en/",
+        },
+      ],
       SelectPrices: [
-        "· Newest Arrivals",
-        "· Price : High to Low",
-        "· Price : Low to High",
+        {
+          title: "· Newest Arrivals",
+          route: "/en/",
+        },
+        {
+          title: "· Price : High to Low",
+          route: "/en/",
+        },
+        {
+          title: "· Price : Low to High",
+          route: "/en/",
+        },
       ],
     },
   },

@@ -1,53 +1,29 @@
-import {
-  FC,
-  createContext,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react"
-import { ContainLanguages, defaultLanguage } from "../languages/Languages"
-import { useLocation } from "react-router-dom"
-import { myproviderType } from "../typescript/contextType"
+import { FC, createContext, useContext, useState } from "react"
+import { CreateContextTypes, myproviderType } from "../typescript/contextType"
 import { languageType } from "../typescript/languageType"
-const mycontext = createContext<languageType | null>(null)
-interface defaultLanguageType extends languageType {
-  setLanguage: () => void
-}
-
+import { defaultLanguage } from "../languages/Languages"
+import { useLocation } from "react-router-dom"
+import { usersTypes } from "../typescript/UserTypes"
+const mycontext = createContext<CreateContextTypes>({
+  visibleMess: false,
+  langCode: "",
+  dataUser: null,
+  language: null,
+  setDataUser: () => {},
+  setLanguage: () => {},
+  setVisibleMess: () => {},
+  setLangCode: () => {},
+})
 const MyProvider: FC<myproviderType> = ({ children }) => {
-  const location = useLocation()
-  let path = location.pathname.slice(1)
-  ///SET DEFAULT LANGUAGE
-  function SetDefaultLanguage() {
-    for (let objLang of ContainLanguages) {
-      for (let shortCode in objLang) {
-        if (shortCode === path) {
-          return objLang[shortCode]
-        }
-      }
-    }
-  }
-  const [language, setLanguage] = useState<defaultLanguageType | any>(
-    SetDefaultLanguage() || defaultLanguage,
-  )
-
-  useEffect(() => {
-    // take path browser and loop over array ContainLanguages to take into shortKey language
-    // finnally assign language into state language if path browser = shortKey
-    for (let objLang of ContainLanguages) {
-      for (let shortCode in objLang) {
-        if (shortCode === path) {
-          setLanguage(objLang[shortCode])
-        }
-      }
-    }
-  }, [language])
-  useLayoutEffect(() => {
-    console.log("hello")
-  }, [])
+  const path = useLocation().pathname
+  const [language, setLanguage] = useState<languageType | null>(path === "/" ? defaultLanguage : null)
+  const [visibleMess, setVisibleMess] = useState<boolean>(false)
+  const [dataUser, setDataUser] = useState<usersTypes | null>(null)
+  const [langCode, setLangCode] = useState<string>(path === "/" ? "vi" : "")
   return (
-    <mycontext.Provider value={{ language, setLanguage }}>
+    <mycontext.Provider
+      value={{ dataUser, setDataUser, setVisibleMess, visibleMess, langCode, setLangCode, language, setLanguage }}
+    >
       {children}
     </mycontext.Provider>
   )
